@@ -21,7 +21,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
             <div className="flex items-center gap-2">
               <BrandMark className="size-9" />
               <span className="font-mono text-xs uppercase tracking-wider text-[#595854] dark:text-neutral-400">
-                [ Quarkfin Labs ]
+                [ Quarkfin Technology Private Limited ]
               </span>
             </div>
             <div className="flex flex-col">
