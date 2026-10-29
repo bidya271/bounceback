@@ -39,16 +39,16 @@ export function Sidebar({
       brand={
         <>
           <BrandMark />
-          <div className="flex min-w-0 flex-col group-data-collapsed/sidebar:hidden">
+          <div className="flex min-w-0 flex-1 flex-col overflow-hidden group-data-collapsed/sidebar:hidden">
             <div className="flex items-center gap-1.5">
-              <span className="font-serif text-xl leading-none font-semibold tracking-[-0.02em] text-[#121211] dark:text-[#F7F5F0]">
+              <span className="font-serif text-[18px] leading-tight font-bold tracking-tight text-ink">
                 Bounceback
               </span>
-              <span className="rounded-[4px] border border-[#DCD8CF] bg-[#EFECE5] px-1 py-0.2 text-[9px] font-mono tracking-wider uppercase text-[#595854] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
+              <span className="rounded-[3px] border border-line bg-hover px-1 py-0.5 text-[8.5px] font-mono tracking-wider uppercase text-muted">
                 Quarkfin
               </span>
             </div>
-            <span className="truncate text-[11px] text-[#595854] dark:text-neutral-400">
+            <span className="truncate text-[10.5px] text-muted">
               For everyone overcoming a layoff
             </span>
           </div>
@@ -59,7 +59,7 @@ export function Sidebar({
         <Link
           href="/new?fresh=1"
           title="New application"
-          className="mb-2 flex min-h-[36px] items-center gap-1.5 rounded-control border-[1.5px] border-[#121211] bg-[#121211] px-3 text-sm font-medium text-[#F7F5F0] shadow-[2px_2px_0px_#121211] hover:bg-[#D94E28] hover:border-[#D94E28] hover:text-[#FFFFFF] motion-safe:transition-all group-data-collapsed/sidebar:justify-center group-data-collapsed/sidebar:px-1.5 dark:border-white/20 dark:bg-white dark:text-[#121211] dark:shadow-none dark:hover:bg-[#D94E28] dark:hover:text-white"
+          className="mb-2 flex min-h-[36px] items-center gap-1.5 rounded-control border border-line-control bg-primary px-3 text-sm font-medium text-on-primary shadow-control hover:bg-primary-hover hover:text-on-primary motion-safe:transition-all group-data-collapsed/sidebar:justify-center group-data-collapsed/sidebar:px-1.5"
         >
           <Plus size={16} aria-hidden="true" className="shrink-0" />
           <span className="group-data-collapsed/sidebar:sr-only font-mono text-xs tracking-tight uppercase">New application</span>
@@ -83,13 +83,13 @@ export function Sidebar({
         <span
           aria-hidden="true"
           title={userName}
-          className="grid size-[26px] shrink-0 place-items-center rounded-control border border-[#121211] bg-[#EFECE5] text-[11px] font-mono font-bold text-[#121211]"
+          className="grid size-[26px] shrink-0 place-items-center rounded-control border border-line bg-hover text-[11px] font-mono font-bold text-ink"
         >
           {initials(userName)}
         </span>
         <span className="flex min-w-0 flex-1 flex-col group-data-collapsed/sidebar:hidden">
           <span className="truncate text-xs font-medium">{userName}</span>
-          <span className="truncate text-[10.5px] font-mono text-[#595854] dark:text-neutral-400">Quarkfin System</span>
+          <span className="truncate text-[10.5px] font-mono text-muted">Quarkfin Technology</span>
         </span>
         <form action={signOut}>
           <button
