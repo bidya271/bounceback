@@ -8,39 +8,27 @@ import { COLOR_SCHEME_COOKIE, rememberPreference, type ColorScheme } from "@/lib
 
 import { useSidebarCollapsed } from "./sidebar-frame";
 
-const DARK_QUERY = "(prefers-color-scheme: dark)";
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void) {
-  const query = matchMedia(DARK_QUERY);
-  query.addEventListener("change", listener);
   listeners.add(listener);
   return () => {
-    query.removeEventListener("change", listener);
     listeners.delete(listener);
   };
 }
 
-/** The scheme showing now: the one chosen here, or else the system's. */
 function currentScheme(): ColorScheme {
   const chosen = document.documentElement.dataset.theme;
-  if (chosen === "light" || chosen === "dark") return chosen;
-  return matchMedia(DARK_QUERY).matches ? "dark" : "light";
+  if (chosen === "dark") return "dark";
+  return "light";
 }
 
-/**
- * The sidebar's light/dark switch. It follows the
- * system until it's used, then remembers the choice in a cookie that the
- * root layout reads, so the next page load starts in the right scheme.
- */
 export function ThemeToggle({ serverScheme }: { serverScheme?: ColorScheme }) {
   const collapsed = useSidebarCollapsed();
-  // The server only knows a scheme that was chosen; for the system's it
-  // guesses light, and the browser corrects it right after hydration.
   const scheme = useSyncExternalStore(subscribe, currentScheme, () => serverScheme ?? "light");
-  const next: ColorScheme = scheme === "dark" ? "light" : "dark";
-  const label = next === "dark" ? "Dark mode" : "Light mode";
-  const Icon = next === "dark" ? Moon : Sun;
+  const next: ColorScheme = scheme === "light" ? "dark" : "light";
+  const label = next === "dark" ? "Switch to dark mode" : "Switch to light mode";
+  const Icon = scheme === "light" ? Moon : Sun;
 
   const toggle = () => {
     document.documentElement.dataset.theme = next;
@@ -59,7 +47,7 @@ export function ThemeToggle({ serverScheme }: { serverScheme?: ColorScheme }) {
       )}
     >
       <Icon size={16} aria-hidden="true" className="shrink-0" />
-      <span className={cn(collapsed && "sr-only")}>{label}</span>
+      <span className={cn(collapsed && "sr-only")}>{scheme === "light" ? "Dark mode" : "Light mode"}</span>
     </button>
   );
 }

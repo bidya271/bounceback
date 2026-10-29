@@ -14,13 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  // Every page renders per request: its scripts carry that request's CSP nonce (E11-5).
   await connection();
-  // Light or dark as chosen in the sidebar; without a choice, the system's.
-  const scheme = parseColorScheme((await cookies()).get(COLOR_SCHEME_COOKIE)?.value);
+  // Default explicitly to light mode unless the user explicitly requested dark in cookie
+  const cookieVal = (await cookies()).get(COLOR_SCHEME_COOKIE)?.value;
+  const scheme = parseColorScheme(cookieVal) ?? "light";
+
   return (
     <html lang="en" data-theme={scheme} className={`${fontVariables} h-full antialiased`}>
-      <body className="min-h-full">
+      <body className="min-h-full bg-paper text-ink">
         {children}
         <Toaster />
       </body>

@@ -2,51 +2,51 @@
 
 /*
  * Bounceback by Quarkfin Technology Private Limited
- * Anti-Gravity Editorial Design Engine: Tactile Paper & Ink (High-Contrast Black & White)
- * - Deep Charcoal/Black (#121211) as structural measure & baseline ink.
- * - Pristine Pure White (#FFFFFF) & Crisp Editorial Paper (#F7F5F0) as highlights & surfaces.
- * - Terracotta / Crimson (#D94E28) as purposeful kinetic accent.
+ * Anti-Gravity Editorial Design Engine: Tactile Paper & Ink (Light Mode by Default)
+ * - Canvas & Shell: Warm Crisp White/Cream Paper (#FBFBF9, #FFFFFF, #F3F1EC)
+ * - Measurement & Structure: Black Ink (#121211) for precise rules, borders, and sharp typography
+ * - Kinetic Accent: Terracotta Rebound (#D94E28)
  */
 @theme {
-  /* Surfaces: Crisp editorial canvas with pure white elevated cards */
-  --color-paper: light-dark(#F7F5F0, #0D0D0C);       /* warm editorial canvas / shell */
-  --color-sidebar: light-dark(#EFECE5, #141413);     /* secondary architectural rail */
-  --color-surface: light-dark(#FFFFFF, #1A1A18);     /* primary elevated panel */
-  --color-card: light-dark(#FFFFFF, #222220);        /* cards */
-  --color-canvas: light-dark(#EAE6DC, #121211);      /* document backdrop */
-  --color-input: light-dark(#FFFFFF, #161615);       /* clean input boxes */
+  /* Surfaces: Crisp white & warm tactile editorial paper */
+  --color-paper: light-dark(#F4F2EC, #0F0F0E);       /* outer application frame / background */
+  --color-sidebar: light-dark(#EAE7DF, #141413);     /* navigation column */
+  --color-surface: light-dark(#FFFFFF, #181816);     /* main white content panel */
+  --color-card: light-dark(#FFFFFF, #20201E);        /* elevated white cards */
+  --color-canvas: light-dark(#E4E0D6, #121211);      /* document preview backdrop */
+  --color-input: light-dark(#FFFFFF, #161614);       /* inputs */
 
-  /* Text: High-contrast ink typography */
-  --color-ink: light-dark(#121211, #FFFFFF);         /* primary high-density text & borders */
-  --color-document: light-dark(#121211, #F4F2EC);
-  --color-muted: light-dark(#595854, #A8A59E);       /* secondary editorial notes */
-  --color-faint: light-dark(#8C887E, #6E6B65);
+  /* Text & Ink Typography */
+  --color-ink: light-dark(#121211, #F5F4F0);         /* dense black text & borders */
+  --color-document: light-dark(#121211, #F0EDE5);
+  --color-muted: light-dark(#5C5A55, #9E9B93);       /* clean secondary metadata */
+  --color-faint: light-dark(#8F8B82, #696660);
 
-  /* Primary actions: Bold high-contrast brutalist buttons */
-  --color-primary: light-dark(#121211, #FFFFFF);
-  --color-primary-hover: light-dark(#D94E28, #E5E5E5);
+  /* Primary actions: Bold high-contrast black buttons with white text */
+  --color-primary: light-dark(#121211, #F5F4F0);
+  --color-primary-hover: light-dark(#D94E28, #E0DCD3);
   --color-on-primary: light-dark(#FFFFFF, #121211);
-  --color-primary-text: light-dark(#121211, #FFFFFF);
-  --color-focus: light-dark(#121211, #FFFFFF);
+  --color-primary-text: light-dark(#121211, #F5F4F0);
+  --color-focus: light-dark(#121211, #F5F4F0);
 
-  /* Toasts and popovers */
-  --color-inverse: light-dark(#121211, #FFFFFF);
+  /* Popovers and notifications */
+  --color-inverse: light-dark(#121211, #F5F4F0);
   --color-on-inverse: light-dark(#FFFFFF, #121211);
 
-  /* Lines: Structural geometric divisions (anti-gravity tactile borders) */
+  /* Lines & Dividers: Clean architectural hairline rules */
   --color-line: light-dark(#DCD8CF, #2C2C29);
-  --color-line-card: light-dark(#DCD8CF, #33332F);
-  --color-line-field: light-dark(#121211, #A8A59E);
-  --color-line-input: light-dark(#121211, #FFFFFF);
-  --color-line-control: light-dark(#121211, #FFFFFF);
-  --color-line-popover: light-dark(#121211, #444440);
-  --color-line-strong: light-dark(#121211, #FFFFFF);
+  --color-line-card: light-dark(#DCD8CF, #33332E);
+  --color-line-field: light-dark(#C4BFB4, #504E4A);
+  --color-line-input: light-dark(#B8B3A8, #6A6761);
+  --color-line-control: light-dark(#C4BFB4, #504E4A);
+  --color-line-popover: light-dark(#DCD8CF, #3A3A35);
+  --color-line-strong: light-dark(#121211, #F5F4F0);
 
   /* Hover & selections */
-  --color-hover: light-dark(rgb(18 18 17 / 0.05), rgb(255 255 255 / 0.08));
-  --color-selected: light-dark(rgb(18 18 17 / 0.1), rgb(255 255 255 / 0.14));
-  --color-track: light-dark(rgb(18 18 17 / 0.08), rgb(255 255 255 / 0.1));
-  --color-toggle-off: light-dark(#8C887E, #6E6B65);
+  --color-hover: light-dark(rgb(18 18 17 / 0.04), rgb(245 244 240 / 0.06));
+  --color-selected: light-dark(rgb(18 18 17 / 0.08), rgb(245 244 240 / 0.12));
+  --color-track: light-dark(rgb(18 18 17 / 0.06), rgb(245 244 240 / 0.08));
+  --color-toggle-off: light-dark(#A6A197, #5C5A55);
 
   /* Feedback */
   --color-danger: light-dark(#D94E28, #FF6B4A);
@@ -65,14 +65,14 @@
   --color-flash: light-dark(#FFF2D6, rgb(255 242 214 / 0.2));
 
   /* Application statuses */
-  --color-status-draft: light-dark(#595854, #8C887E);
+  --color-status-draft: light-dark(#736F66, #9E9B93);
   --color-status-sent: #2563EB;
   --color-status-screening: #0891B2;
   --color-status-interview: #7C3AED;
   --color-status-offer: #166E48;
   --color-status-accepted: #059669;
   --color-status-rejected: #D94E28;
-  --color-status-declined: light-dark(#595854, #8C887E);
+  --color-status-declined: light-dark(#736F66, #9E9B93);
 
   /* Architectural radii */
   --radius-control: 6px;
@@ -81,16 +81,16 @@
   --radius-panel: 12px;
   --radius-dialog: 12px;
 
-  /* Offset brutalist shadows: Tactile physical paper elevation */
-  --shadow-page: 0 4px 16px rgba(18, 18, 17, 0.08);
-  --shadow-dialog: 8px 8px 0px #121211;
-  --shadow-raised: 2px 2px 0px #121211;
-  --shadow-control: 2px 2px 0px #121211;
-  --shadow-cta: 3px 3px 0px #121211;
+  /* Crisp subtle shadows */
+  --shadow-page: 0 2px 12px rgba(18, 18, 17, 0.05);
+  --shadow-dialog: 0 12px 36px rgba(18, 18, 17, 0.15);
+  --shadow-raised: 0 1px 3px rgba(18, 18, 17, 0.08);
+  --shadow-control: 0 1px 2px rgba(18, 18, 17, 0.05);
+  --shadow-cta: 0 2px 4px rgba(18, 18, 17, 0.12);
   --shadow-knob: 0 1px 2px rgba(18, 18, 17, 0.2);
-  --shadow-menu: 4px 4px 0px #121211;
-  --shadow-toolbar: 3px 3px 0px #121211;
-  --shadow-toast: 4px 4px 0px #121211;
+  --shadow-menu: 0 6px 24px rgba(18, 18, 17, 0.1);
+  --shadow-toolbar: 0 2px 8px rgba(18, 18, 17, 0.08);
+  --shadow-toast: 0 8px 24px rgba(18, 18, 17, 0.14);
 
   /* Type scale */
   --text-label: 12.5px;
@@ -108,10 +108,11 @@
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
-  html[data-theme="light"] {
+  html[data-theme="light"],
+  html:not([data-theme="dark"]) {
     color-scheme: light;
   }
 
