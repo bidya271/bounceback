@@ -1,9 +1,13 @@
 # Bounceback
-### Dedicated to Everyone Overcoming a Layoff · Powered by Quarkfin
+### Dedicated to Everyone Overcoming a Layoff · Powered by Quarkfin Technology Private Limited
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-121211.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
-[![Brand: Quarkfin](https://img.shields.io/badge/Brand-Quarkfin-D94E28.svg?style=flat-square)](https://github.com/quarkfin/bounceback)
+[![Brand: Quarkfin](https://img.shields.io/badge/Brand-Quarkfin-D94E28.svg?style=flat-square)](https://github.com/bidya271/bounceback)
 [![Privacy: 100% Local](https://img.shields.io/badge/Privacy-100%25_On--Device-166E48.svg?style=flat-square)](#privacy-first)
+
+https://github.com/user-attachments/assets/bounceback_intro.mp4
+
+> **Watch the Launch Intro:** [`public/video/bounceback_intro.mp4`](public/video/bounceback_intro.mp4)
 
 **Bounceback** is an open-source, private, self-hosted career command center and application tailoring engine designed to help professionals bounce back after layoffs.
 
@@ -33,7 +37,7 @@ Bounceback changes the rules:
 
 ### 2. Clone & Install
 ```bash
-git clone https://github.com/quarkfin/bounceback.git
+git clone https://github.com/bidya271/bounceback.git
 cd bounceback
 corepack enable
 yarn install
@@ -51,7 +55,6 @@ Generate your secrets:
 ```bash
 echo "BOUNCEBACK_SECRET=$(openssl rand -hex 32)" >> .env
 echo "DATABASE_URL=\"postgresql://localhost:5432/bounceback\"" >> .env
-# Set your login password (hash generated via script or standard argon2)
 echo "BOUNCEBACK_PASSWORD=your_secure_password" >> .env
 ```
 
@@ -83,22 +86,10 @@ You can connect your local AI agent (Claude Code, Antigravity, or Cursor) to you
 }
 ```
 
-Now you can simply tell your AI:
-> *"Match my profile against this job posting: https://... and draft an application in Bounceback."*
-
----
-
-## Anti-Gravity Design Philosophy
-
-Bounceback follows the **Anti-Gravity** editorial design ethos:
-- **No Neon AI Slop:** No gradient glow buttons, floating blur orbs, or hollow buzzwords.
-- **Editorial Paper & Ink:** High-contrast typographic precision inspired by print editorial design (`#F7F5F0` paper, `#121211` ink, and tactile brutalist framing).
-- **Hard Metrics Over Fluff:** Resumes and cover letters prioritize quantifiable impact and technical depth over generic buzzwords.
-
 ---
 
 ## License & Credits
 
 Distributed under the **AGPL-3.0 License**.
 
-Crafted with resilience by **Quarkfin**. Dedicated to every builder bouncing back stronger.
+Crafted with resilience by **Quarkfin Technology Private Limited**. Dedicated to every builder bouncing back stronger.
