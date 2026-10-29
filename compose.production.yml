@@ -1,0 +1,83 @@
+# Bounceback with Docker Compose (see the installation guide, https://github.com/quarkfin/bounceback/wiki). Save this
+# file as compose.yml in a folder of its own, put POSTGRES_PASSWORD,
+# BOUNCEBACK_PASSWORD (a hash of your password, from `docker run --rm -it
+# ghcr.io/quarkfin/bounceback hash-password`) and BOUNCEBACK_SECRET in a .env file
+# next to it, then:
+#
+#   docker compose up -d
+#
+# Add COMPOSE_PROFILES=ai to .env to run Ollama for a local model as well.
+
+services:
+  db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bounceback
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: bounceback
+    volumes:
+      # Postgres 18+ keeps data in a versioned subdirectory, so mount the parent.
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bounceback -d bounceback"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    image: ${BOUNCEBACK_IMAGE:-ghcr.io/quarkfin/bounceback:latest}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://bounceback:${POSTGRES_PASSWORD}@db:5432/bounceback
+      BOUNCEBACK_PASSWORD: ${BOUNCEBACK_PASSWORD:?Set BOUNCEBACK_PASSWORD in .env to a hash from hash-password}
+      BOUNCEBACK_SECRET: ${BOUNCEBACK_SECRET:?Set BOUNCEBACK_SECRET in .env}
+      BOUNCEBACK_BACKUP_RETENTION_DAYS: ${BOUNCEBACK_BACKUP_RETENTION_DAYS:-}
+      # Your time zone, e.g. Europe/Berlin: nightly backups run at 03:00 in it.
+      TZ: ${TZ:-}
+      BOUNCEBACK_AI_PROVIDER: ${BOUNCEBACK_AI_PROVIDER:-}
+      BOUNCEBACK_AI_URL: ${BOUNCEBACK_AI_URL:-}
+      BOUNCEBACK_AI_MODEL: ${BOUNCEBACK_AI_MODEL:-}
+      BOUNCEBACK_AI_KEY: ${BOUNCEBACK_AI_KEY:-}
+      BOUNCEBACK_AI_TIMEOUT_SECONDS: ${BOUNCEBACK_AI_TIMEOUT_SECONDS:-}
+      # The daily usage ping: unset, Bounceback asks after sign-in; on or off answers in advance (see Privacy in the wiki).
+      BOUNCEBACK_TELEMETRY: ${BOUNCEBACK_TELEMETRY:-}
+      # Defaults for Settings → Job search.
+      BOUNCEBACK_JOBS_SOURCE: ${BOUNCEBACK_JOBS_SOURCE:-}
+      BOUNCEBACK_JSEARCH_KEY: ${BOUNCEBACK_JSEARCH_KEY:-}
+      BOUNCEBACK_JSEARCH_HOST: ${BOUNCEBACK_JSEARCH_HOST:-}
+      BOUNCEBACK_ADZUNA_APP_ID: ${BOUNCEBACK_ADZUNA_APP_ID:-}
+      BOUNCEBACK_ADZUNA_KEY: ${BOUNCEBACK_ADZUNA_KEY:-}
+      # Gmail and Calendar: a Google OAuth client (or enter it in Settings → Google).
+      BOUNCEBACK_GOOGLE_CLIENT_ID: ${BOUNCEBACK_GOOGLE_CLIENT_ID:-}
+      BOUNCEBACK_GOOGLE_CLIENT_SECRET: ${BOUNCEBACK_GOOGLE_CLIENT_SECRET:-}
+      # The address Bounceback is reached at, for Google's redirect.
+      BOUNCEBACK_PUBLIC_URL: ${BOUNCEBACK_PUBLIC_URL:-}
+    # Only on the server itself: put a reverse proxy with HTTPS in front.
+    ports:
+      - "127.0.0.1:${BOUNCEBACK_PORT:-3000}:3000"
+    volumes:
+      - data:/data
+    # Room for Chromium, which prints the PDFs.
+    mem_limit: 1g
+    # Lets http://host.docker.internal reach Ollama (:11434) or LM Studio
+    # (:1234) on the host.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # A local model, with COMPOSE_PROFILES=ai in .env: `docker compose up -d`,
+  # then pull one (see "Choosing an AI provider" in the wiki). Bounceback reaches it at http://ollama:11434.
+  ollama:
+    profiles: [ai]
+    image: ollama/ollama:0.40.6
+    restart: unless-stopped
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  pgdata:
+  data:
+  ollama:
